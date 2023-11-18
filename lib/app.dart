@@ -10,6 +10,28 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "APP_TITLE".tr(),
+       theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        colorScheme: ColorScheme(
+          primary: Colors.blue,
+          secondary: Colors.white, //cor deslize tela
+          surface: Colors.white,
+          background: Colors.white,
+          error: Colors.red,
+          onPrimary: Colors.black,
+          onSecondary: Colors.white,
+          onSurface: Colors.black,
+          onBackground: const Color.fromARGB(26, 41, 40, 40),
+          onError: Colors.red,
+          brightness: Brightness.light,
+        ),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          },
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: const SplashPage(),
     );

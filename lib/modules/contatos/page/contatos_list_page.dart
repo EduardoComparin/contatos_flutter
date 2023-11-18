@@ -42,10 +42,13 @@ class _ContatosListPageState extends State<ContatosListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
           title: const Text('Contatos'),
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blue,
+          shape: CircleBorder(),
           onPressed: () async {
             await Navigator.push(
               context,
@@ -67,6 +70,7 @@ class _ContatosListPageState extends State<ContatosListPage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: BottomAppBar(
+          height: 50,
           shape: const CircularNotchedRectangle(),
           color: Colors.blue,
           child: IconTheme(
@@ -88,40 +92,48 @@ class _ContatosListPageState extends State<ContatosListPage> {
                       child: ListView.builder(
                           itemCount: listaContatos.length,
                           itemBuilder: (BuildContext bc, int index) {
-                            
                             var dados = listaContatos[index];
                             var telefone = dados.telefone.toString();
                             var nome = dados.nome.toString();
                             var letra = dados.nome.toString().substring(0, 1);
                             var imagem = dados.imagem.toString();
-                            
+
                             return Column(
                               children: [
                                 Dismissible(
                                   direction: DismissDirection.endToStart,
-                                  onDismissed: (DismissDirection dismissDirection) async {
-                                    await _contatoService.remover(dados.id.toString());
+                                  onDismissed: (DismissDirection
+                                      dismissDirection) async {
+                                    await _contatoService
+                                        .remover(dados.id.toString());
                                   },
                                   background: Container(
                                     color: Colors.red,
                                     child: Padding(
                                       padding: const EdgeInsets.all(15),
                                       child: Row(
-                                        mainAxisAlignment:MainAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         children: const [
-                                          Icon(Icons.delete_forever,color: Colors.white),
+                                          Icon(Icons.delete_forever,
+                                              color: Colors.white),
                                           SizedBox(width: 8.0),
-                                          Text('Remover',style: TextStyle(color: Colors.white))
+                                          Text('Remover',
+                                              style: TextStyle(
+                                                  color: Colors.white))
                                         ],
                                       ),
                                     ),
                                   ),
                                   key: Key(nome),
                                   child: ListTile(
-                                    leading: imagem != "" ? CircleAvatar(
-                                            backgroundImage:FileImage(File(imagem)),
+                                    leading: imagem != ""
+                                        ? CircleAvatar(
+                                            backgroundImage:
+                                                FileImage(File(imagem)),
                                           )
                                         : CircleAvatar(
+                                            backgroundColor: Colors.blue,
                                             child: Text(letra),
                                           ),
                                     title: Text(nome),
@@ -131,7 +143,10 @@ class _ContatosListPageState extends State<ContatosListPage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              ContatosEditPage(contatoModel: dados,titulo: "Editando Contato",novo: false,
+                                              ContatosEditPage(
+                                            contatoModel: dados,
+                                            titulo: "Editando Contato",
+                                            novo: false,
                                           ),
                                         ),
                                       );

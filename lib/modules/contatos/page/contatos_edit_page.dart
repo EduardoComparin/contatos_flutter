@@ -77,7 +77,8 @@ class _ContatosEditPageState extends State<ContatosEditPage> {
         child: Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: Text(widget.contatoModel.nome.toString()),
+        title: Text(widget.titulo),
+        backgroundColor: Colors.blue,
       ),
       body: Container(
         child: ListView(
@@ -93,10 +94,12 @@ class _ContatosEditPageState extends State<ContatosEditPage> {
               ),
             ),
             inputText("Nome", _ctrlNome, false, [], TextInputType.name),
-            inputText("Telefone", _ctrlTelefone, false, formater[0],TextInputType.phone),
+            inputText("Telefone", _ctrlTelefone, false, formater[0],
+                TextInputType.phone),
             inputText("Cidade", _ctrlCidade, false, [], TextInputType.text),
             inputText("Endereco", _ctrlEndereco, false, [], TextInputType.text),
-            inputText("Aniversário", _ctrlAniversario, false, formater[1],TextInputType.number),
+            inputText("Aniversário", _ctrlAniversario, false, formater[1],
+                TextInputType.number),
             Container(
               margin: EdgeInsets.only(top: 10, right: 10, left: 10),
               child: Padding(
@@ -136,6 +139,8 @@ class _ContatosEditPageState extends State<ContatosEditPage> {
   Positioned AddFoto(BuildContext context) {
     return Positioned(
       child: FloatingActionButton.small(
+        backgroundColor: Colors.blue,
+        shape: CircleBorder(),
         onPressed: () {
           showModalBottomSheet(
             context: context,
